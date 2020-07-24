@@ -1,0 +1,20 @@
+{
+  "Successful": "Thành công",
+  "Operation Success": "Hành động đã thành công",
+  "Operation Failed": "Hành động đã không thành công",
+  "Not Found": "Không thể tìm thấy thông tin",
+  "Unauthorized": "Không được phép",
+  "No Roles": "Không có quyền thực thi",
+  "Token Required": "Vui lòng cung cấp Token",
+  "Token Invalid": "Token không hợp lệ",
+  "Token Timeout": "Token hết hạn",
+  "Uuid": ":attribute cần phải là kiểu Uuid",
+  "Security Hash Error": "Security hash không hợp lệ.",
+  ":name Not Found": "Không tìm thấy :name",
+  "Account Not Exists": "Tài khoản không tồn tại",
+  "Account Has Been Blocked": "Tài khoản đã bị khóa",
+  "Login Failed Many Time": "Đăng nhập thất bại quá số lần quy định",
+  "Account Or Password Invalid": "Tài khoản hoặc mật khẩu không hợp lệ",
+  "Username": "Tài khoản",
+  "Password": "Mật khẩu"
+}

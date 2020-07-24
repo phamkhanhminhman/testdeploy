@@ -1,0 +1,20 @@
+{
+  "Successful": "Successful",
+  "Operation Success": "Operation was successful",
+  "Operation Failed": "Operation was failed",
+  "Not Found": "Can't found item",
+  "Unauthorized": "Authorized invalid",
+  "No Roles": "Operation are not authorized",
+  "Token Required": "Token required",
+  "Token Invalid": "Token invalid",
+  "Token Timeout": "Token Timeout",
+  "Uuid": "The :attribute need to be uuid type",
+  "Security Hash Error": "Security hash is not valid.",
+  ":name Not Found": ":name not found",
+  "Account Not Exists": "Account not exists",
+  "Account Has Been Blocked": "Account has been blocked",
+  "Login Failed Many Time": "Login failed over limit",
+  "Account Or Password Invalid": "Account or password invalid",
+  "Username": "Username",
+  "Password": "Password"
+}

@@ -6,10 +6,14 @@ use Carbon\Carbon;
 use App\User;
 use App\Notifications\SignupActivate;
 use Illuminate\Support\Str;
+use App\Http\Requests\SignInRequest;
+use App\Http\Requests\SignUpRequest;
+use App\Traits\Response;
 
 
 class AuthController extends Controller
 {
+	use Response;
     /**
      * Create user
      *
@@ -19,13 +23,9 @@ class AuthController extends Controller
      * @param  [string] password_confirmation
      * @return [string] message
      */
-    public function signup(Request $request)
+    public function signup(SignUpRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
-        ]);
+        $validated = $request->validated();
 
         $user = new User([
             'name' => $request->name,
@@ -35,13 +35,16 @@ class AuthController extends Controller
         ]);
 
         $user->save();
-        $user->notify(new SignupActivate($user));
+        $user->notify(new SignupActivate($user)); //Send Email Confirm
 
-        return response()->json([
-            'message' => 'Successfully created user!'
-        ], 201);
+        return $this->success([], 'Successfully created user!');
     }
 
+    /**
+     * Active account
+     *
+     * @param  [string] token 
+     */
     public function signupActivate($token)
 	{
 	    $user = User::where('activation_token', $token)->first();
@@ -68,13 +71,11 @@ class AuthController extends Controller
      * @return [string] token_type
      * @return [string] expires_at
      */
-    public function login(Request $request)
+    public function login(SignInRequest $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
-        ]);
+       	//Validated Form Request
+        $validated = $request->validated();
+        
         $credentials = request(['email', 'password']);
         $credentials['active'] = 1;
     	$credentials['deleted_at'] = null;
@@ -94,13 +95,11 @@ class AuthController extends Controller
         }
         $token->save();
 
-        return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString()
-        ]);
+        $dataSuccess = array('access_token' => $tokenResult->accessToken, 
+         					 'token_type'   => 'Bearer',
+         					 'expires_at'   => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString());
+        
+        return $this->success($dataSuccess);
     }
   
     /**
