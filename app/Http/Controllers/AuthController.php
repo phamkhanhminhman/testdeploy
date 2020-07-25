@@ -93,6 +93,7 @@ class AuthController extends Controller
         } else {
         	$token->expires_at = Carbon::now()->addMinutes(15);
         }
+        $token->scopes = 'Bearer '.$tokenResult->accessToken;
         $token->save();
 
         $dataSuccess = array('access_token' => $tokenResult->accessToken, 

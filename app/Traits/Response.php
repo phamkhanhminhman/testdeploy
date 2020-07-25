@@ -71,6 +71,21 @@ trait Response
     }
 
     /**
+     * response unauthorized error
+     * @param $message
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function errorUnauthorized(string $message = "")
+    {
+        $response = [
+            'code'        => config('code.unauthorized'),
+            'server_time' => $this->getServerTime(),
+            'errors'      => empty($message) ? __("Unauthorized") : $message
+        ];
+        return $this->response($response);
+    }
+
+    /**
      * @param array $response
      * @return \Illuminate\Http\JsonResponse
      */
