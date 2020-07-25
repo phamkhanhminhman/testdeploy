@@ -18,16 +18,12 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::group([
-    'prefix' => 'auth'
-], function () {
+Route::group(['prefix' => 'auth', 'middleware' => 'language'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
     Route::get('signup/activate/{token}', 'AuthController@signupActivate');
     
-    Route::group([
-      'middleware' => 'auth:api'
-    ], function() {
+    Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });

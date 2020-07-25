@@ -43,7 +43,7 @@ class SignInRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => ':attribute không được bỏ trống'
+            'required' => trans('messages.common.param_missing'). ' :attribute '
         ];
     }
     

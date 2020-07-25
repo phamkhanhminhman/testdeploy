@@ -37,7 +37,7 @@ class AuthController extends Controller
         $user->save();
         $user->notify(new SignupActivate($user)); //Send Email Confirm
 
-        return $this->success([], 'Successfully created user!');
+        return $this->success([], trans('messages.register.register_success'));
     }
 
     /**
@@ -99,7 +99,7 @@ class AuthController extends Controller
          					 'token_type'   => 'Bearer',
          					 'expires_at'   => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString());
         
-        return $this->success($dataSuccess);
+        return $this->success($dataSuccess, trans('messages.auth.login_success'));
     }
   
     /**
