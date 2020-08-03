@@ -1,5 +1,8 @@
 <?php
 
+//Access-Control-Allow-Origin header with wildcard.
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::group(['prefix' => 'auth', 'middleware' => 'language'], function () {
+Route::group(['prefix' => 'auth', 'middleware' => ['cors','language']], function () {
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
     Route::get('signup/activate/{token}', 'AuthController@signupActivate');

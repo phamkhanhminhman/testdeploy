@@ -30,7 +30,7 @@ class SignUpRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|string|email|unique:users',
+            'username' => 'required|string|unique:users',
             'password' => 'required|string|confirmed'        
         ];
     }

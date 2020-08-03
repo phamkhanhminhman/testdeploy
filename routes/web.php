@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', 'testController@test');
+Route::get('test', 'testController@test1');

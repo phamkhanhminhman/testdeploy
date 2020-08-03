@@ -29,6 +29,7 @@ class AuthController extends Controller
 
         $user = new User([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'activation_token' => Str::random(40)
@@ -76,14 +77,14 @@ class AuthController extends Controller
        	//Validated Form Request
         $validated = $request->validated();
         
-        $credentials = request(['email', 'password']);
+        $credentials = request(['username', 'password']);
         $credentials['active'] = 1;
     	$credentials['deleted_at'] = null;
 
-        if(!Auth::attempt($credentials))
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
+        if(!Auth::attempt($credentials)) {
+            return $this->errorUnauthorized('These credentials do not match our records.');
+        }
+            
         $user = $request->user();
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
@@ -123,6 +124,7 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+    	// $user = User::where('id', $request->user()->id)->get()->toArray();
+        return $this->success(array($request->user()));
     }
 }
