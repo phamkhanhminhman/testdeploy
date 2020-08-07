@@ -18,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', 'testController@test');
-Route::get('test', 'testController@test1');
+Route::get('test1', 'testController@test1');
+Route::get('session', 'testController@session');
+Route::get('google', 'PhotoController@google');
+Route::get('callback', 'PhotoController@google');
+
+Route::get('photo',  'PhotoController@getPhoto');
