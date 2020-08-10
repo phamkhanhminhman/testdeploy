@@ -1,13 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 
-class Post extends Model
+class OAuthGoogle extends Model
 {
-    protected $table = 'post';
+    protected $table = 'oauth_google';
     
     public $timestamp = false;
 
@@ -17,11 +16,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'user_id'
+         'code', 'access_token'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 }

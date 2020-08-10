@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
-use App\User;
-use App\Post;
+use App\Model\User;
+use App\Model\Post;
 
 class testController extends Controller
 {
@@ -19,9 +19,9 @@ class testController extends Controller
 
     public function test1(Request $request)
     {
-        dd($request->session()->all());
+        // dd(session()->all());
        
-        $post = Post::find('p3')->user;
+        $post = Post::all();
   		dd($post);
     }
 

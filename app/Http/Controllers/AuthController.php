@@ -8,12 +8,10 @@ use App\Notifications\SignupActivate;
 use Illuminate\Support\Str;
 use App\Http\Requests\SignInRequest;
 use App\Http\Requests\SignUpRequest;
-use App\Traits\Response;
 
 
 class AuthController extends Controller
 {
-	use Response;
     /**
      * Create user
      *

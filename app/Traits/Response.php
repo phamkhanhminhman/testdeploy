@@ -110,7 +110,7 @@ trait Response
         foreach ($data as $key => $value) {
             $results->{$key} = $value;
         }
-        return $results;
+        return $data;
     }
 
     /**

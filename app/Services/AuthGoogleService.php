@@ -6,12 +6,9 @@ use File;
 use Illuminate\Http\Request;
 use Google\Auth\OAuth2;
 use Google\Auth\Credentials\UserRefreshCredentials;
-use App\Traits\CredentialsGoogle;
 
-class AuthGoogleService 
+class AuthGoogleService extends BaseService
 {
-    use CredentialsGoogle;
-
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/photoslibrary',
         'https://www.googleapis.com/auth/photoslibrary.appendonly',
@@ -47,7 +44,7 @@ class AuthGoogleService
             'tokenCredentialUri' => 'https://www.googleapis.com/oauth2/v4/token',
             'scope' => $scopes,
         ]);
-
+        
         return $oauth2;
     }
 }
