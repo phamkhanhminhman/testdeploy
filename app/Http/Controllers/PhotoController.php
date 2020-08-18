@@ -24,6 +24,10 @@ class PhotoController extends Controller
         $this->photo 	  = $photo;
     }
 
+    /**
+	 * Sign In Google
+	 * @return [array] AUTHEN URL
+     */
     public function authGoogle()
     {
     	try {
@@ -52,6 +56,11 @@ class PhotoController extends Controller
 			echo $exception;
 		}
     }
+
+    /**
+	 * LIST MEDIA ITEMS
+	 * @return [array] response
+     */
 	public function getPhoto() 
 	{
 		try {
@@ -74,7 +83,7 @@ class PhotoController extends Controller
 		        $response = $this->photo->listMediaItems($access_token); 
 		        foreach ($response as $key => $mediaItem) {
 		        	$mediaItems =  MediaItemsGoogle::firstOrNew([
-		        		'id'=> $mediaItem->id,
+		        		'item_id'=> $mediaItem->id,
 				        'product_url' => $mediaItem->productUrl,
 				        'base_url' => $mediaItem->baseUrl,
 				        'mime_type' => $mediaItem->mimeType,
@@ -84,6 +93,8 @@ class PhotoController extends Controller
 				        'file_name' => $mediaItem->filename,
 		        	]);
 		        	// $mediaItems->save();
+		        	// $mediaItem->baseUrl = $mediaItem->baseUrl . '=w320-h568-c';
+		        	$mediaItem->url = $mediaItem->baseUrl;
 		        }
 		        return $this->success($response, trans('messages.common.show_success'));   
 		    } else {
@@ -97,6 +108,10 @@ class PhotoController extends Controller
 		}
 	}
 
+	/**
+	 * Exchange the authorization code for an access token
+	 * @return [array] access_tokenL
+     */
 	public function google()
 	{
 		$scopes	= [ 'https://www.googleapis.com/auth/photoslibrary'];

@@ -36,7 +36,7 @@ class PhotoGoogleService extends BaseService
             return $response->mediaItems;
 
         } catch (\Exception $e) {
-            echo 'failed';
+            echo $e;
         }
     }
 }

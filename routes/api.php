@@ -31,3 +31,11 @@ Route::group(['prefix' => 'auth', 'middleware' => ['cors','language']], function
     });
 });
 
+Route::post('playlist-youtube', 'YoutubeController@store');
+Route::get('playlist-youtube', 'YoutubeController@index');
+Route::get('playlist-youtube/{id}', 'YoutubeController@show');
+Route::put('playlist-youtube/{id}', 'YoutubeController@update');
+Route::delete('playlist-youtube/{id}', 'YoutubeController@destroy');
+
+
+

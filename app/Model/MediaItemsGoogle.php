@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class MediaItemsGoogle extends Model
 {
     protected $table = 'media_items_google';
+
+    protected  $primaryKey = 'item_id';
     
     public $timestamp = false;
 
@@ -16,6 +18,6 @@ class MediaItemsGoogle extends Model
      * @var array
      */
     protected $fillable = [
-         'id', 'product_url', 'base_url', 'mime_type', 'width', 'height', 'file_name', 'creation_time'
+         'item_id', 'product_url', 'base_url', 'mime_type', 'width', 'height', 'file_name', 'creation_time'
     ];
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateMediaItemsGoogle extends Migration
+class UpdatePlaylistYoutube extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class UpdateMediaItemsGoogle extends Migration
      */
     public function up()
     {
-        Schema::table('media_items_google', function (Blueprint $table) {
-            $table->string('id')->unique();
+        Schema::table('playlist_youtube', function (Blueprint $table) {
+            $table->date('creation_time');
+            $table->increments('id');
         });
     }
 
@@ -25,7 +26,8 @@ class UpdateMediaItemsGoogle extends Migration
      */
     public function down()
     {
-        Schema::table('media_items_google', function (Blueprint $table) {
+        Schema::table('playlist_youtube', function (Blueprint $table) {
+            //
         });
     }
 }

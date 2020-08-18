@@ -11,7 +11,7 @@ trait Response
      * @param int|null $code
      * @return \Illuminate\Http\JsonResponse
      */
-    public function success(array $data, string $message = "", int $code = null)
+    public function success($data = null, string $message = "", int $code = null)
     {
         $response = [
             'code'        => $this->getCode($code),
@@ -104,13 +104,17 @@ trait Response
      * @param array $data
      * @return \stdClass
      */
-    private function getOutputs(array $data = [])
+    private function getOutputs($data = null)
     {
         $results = new \stdClass();
-        foreach ($data as $key => $value) {
-            $results->{$key} = $value;
+
+        if (is_array($data) === true) {
+            foreach ($data as $key => $value) {
+                $results->{$key} = $value;
+            }
+            return $data;
         }
-        return $data;
+        
     }
 
     /**

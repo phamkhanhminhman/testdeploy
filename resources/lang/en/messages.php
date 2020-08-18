@@ -59,7 +59,7 @@ return [
         'update_success' => 'Update resource successfull',
         'invalid_data' => 'Invalid Data',
         'create_success' => 'Create data successfull',
-        'delete_sucess' => 'Remove data successfull',
+        'delete_success' => 'Remove data successfull',
         'upload_image_fail' => 'Upload image fails',
     ],
     'product' => [
