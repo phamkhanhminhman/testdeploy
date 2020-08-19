@@ -18,12 +18,12 @@ class YoutubeController extends Controller
     public function store(PlaylistRequest $request)
     {
     	$validated = $request->validated();
-    	$img       = $request->file('thumbnails');
+    	$thumbnails = $request->file('thumbnails');
         
         $playlist = new PlayListYoutube([
             'playlist_id' => $request->playlist_id,
             'title' => $request->title,
-            'thumbnails' => "upload/".$img->getClientOriginalName(),
+            'thumbnails' => "upload/".$thumbnails->getClientOriginalName(),
             'desc' => $request->desc,
             'link' => $request->link,
             'total_video' => $request->total_video,
@@ -33,7 +33,7 @@ class YoutubeController extends Controller
             'creation_time' => $request->creation_time,
         ]);
 
-        $img->move('./upload/',$img->getClientOriginalName()); 
+        $thumbnails->move('./upload/',$thumbnails->getClientOriginalName()); 
         $playlist->save();
 
         $data = array('playlist_id' =>  $request->playlist_id);

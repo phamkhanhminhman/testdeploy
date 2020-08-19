@@ -95,6 +95,8 @@ class PhotoController extends Controller
 		        	// $mediaItems->save();
 		        	// $mediaItem->baseUrl = $mediaItem->baseUrl . '=w320-h568-c';
 		        	$mediaItem->url = $mediaItem->baseUrl;
+		        	// header("Location: " . filter_var($mediaItem->url, FILTER_SANITIZE_URL));
+		        	// exit();
 		        }
 		        return $this->success($response, trans('messages.common.show_success'));   
 		    } else {
@@ -102,9 +104,10 @@ class PhotoController extends Controller
 		    }
 		} catch (\Google\ApiCore\ApiException $exception) {
 		// Error during album creation
+			echo $exception;
 		} catch (\Google\ApiCore\ValidationException $e) {
 		// Error during client creation
-			echo $exception;
+			echo $e;
 		}
 	}
 
@@ -112,7 +115,7 @@ class PhotoController extends Controller
 	 * Exchange the authorization code for an access token
 	 * @return [array] access_tokenL
      */
-	public function google()
+	public function callback()
 	{
 		$scopes	= [ 'https://www.googleapis.com/auth/photoslibrary'];
        	$redirectURI = 'http://localhost:4200';	
@@ -133,37 +136,5 @@ class PhotoController extends Controller
         $oauthGoogle->save();
 
     	return $this->success(array('access_token' => $refreshToken), trans('messages.common.show_success'));
-	}
-
-	public function callback()
-	{
-		$scopes	= [ 'https://www.googleapis.com/auth/photoslibrary'];
-       	$redirectURI = 'http://localhost:8000/callback';	
-		$oauth2 = $this->authGoogle->setAuthorParam($scopes, $redirectURI);
-		$oauth2->setCode($_GET['code']);
-    	$authToken = $oauth2->fetchAuthToken();
-
-    	$refreshToken = $authToken['access_token'];
-
-    	
-		// return 1;
-		// return 1
-		// $scopes	= [ 'https://www.googleapis.com/auth/photoslibrary'];
-
-  //      	$redirectURI = 'http://localhost:8000/google';	
-
-		// $oauth2 = $this->authGoogle->setAuthorParam($scopes, $redirectURI);
-		// if (!isset($_GET['code'])) {
-		//     // The authorization URI will, upon redirecting, return a parameter called code.
-		//     $authenticationUrl = $oauth2->buildFullAuthorizationUri(['access_type' => 'offline']);
-		//     header("Location: " . filter_var($authenticationUrl, FILTER_SANITIZE_URL));
-		//     exit();
-		// } else {
-	 //    	$oauth2->setCode($_GET['code']);
-  //       	$authToken = $oauth2->fetchAuthToken();
-  //       	$refreshToken = $authToken['access_token'];
-  //       	$request->session()->put('access_token', $refreshToken);
-  //       	$request->session()->put('code', $_GET['code']);
-		// }
 	}
 }

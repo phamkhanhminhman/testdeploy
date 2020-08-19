@@ -21,10 +21,7 @@ Route::get('/', 'testController@test');
 Route::get('test1', 'testController@test1');
 Route::get('session', 'testController@session');
 
-Route::get('callback', 'PhotoController@callback')->middleware('cors');
-
-Route::get('google', 'PhotoController@google');
-
 
 Route::get('photo',  'PhotoController@getPhoto')->middleware('cors');
 Route::get('auth-google',  'PhotoController@authGoogle')->middleware('cors');
+Route::get('callback', 'PhotoController@callback');
