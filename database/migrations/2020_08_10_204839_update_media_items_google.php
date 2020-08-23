@@ -14,7 +14,7 @@ class UpdateMediaItemsGoogle extends Migration
     public function up()
     {
         Schema::table('media_items_google', function (Blueprint $table) {
-            $table->string('id')->unique();
+            
         });
     }
 

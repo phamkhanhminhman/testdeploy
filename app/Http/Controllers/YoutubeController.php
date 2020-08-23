@@ -10,7 +10,7 @@ class YoutubeController extends Controller
 {
 	public function index() 
 	{
-		$playlist = PlayListYoutube::orderBy('year', 'desc')->get()->toArray();
+		$playlist = PlayListYoutube::latest('year')->get()->toArray();
 
 		return $this->success($playlist, trans('messages.common.show_success'));
 	}
