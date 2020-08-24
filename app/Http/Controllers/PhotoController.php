@@ -35,8 +35,9 @@ class PhotoController extends Controller
         	$clientId = $clientSecretJson['client_id'];
         	$clientSecret = $clientSecretJson['client_secret'];
 
-			$redirectURI = 'http://localhost:4200';
-
+			// $redirectURI = 'http://localhost:4200';
+        	$redirectURI = 'https://cakhia-studio.web.app/';
+    		
     		$scopes	= [ 'https://www.googleapis.com/auth/photoslibrary'];
 
 			$oauth2 = $this->authGoogle->setAuthorParam($scopes, $redirectURI);
