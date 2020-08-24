@@ -15,6 +15,7 @@ class CreateMediaItemsGoogleTable extends Migration
     {
         Schema::create('media_items_google', function (Blueprint $table) {
             $table->string('id');
+            $table->string('item_id');
             $table->string('product_url')->nullable();
             $table->text('base_url')->nullable();
             $table->string('mime_type');

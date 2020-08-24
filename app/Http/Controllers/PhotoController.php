@@ -118,7 +118,8 @@ class PhotoController extends Controller
 	public function callback()
 	{
 		$scopes	= [ 'https://www.googleapis.com/auth/photoslibrary'];
-       	$redirectURI = 'http://localhost:4200';	
+       	// $redirectURI = 'http://localhost:4200';	
+       	$redirectURI = 'https://cakhia-studio.web.app/';
 
 		$oauth2 = $this->authGoogle->setAuthorParam($scopes, $redirectURI);
 		$oauth2->setCode($_GET['code']);
@@ -126,7 +127,7 @@ class PhotoController extends Controller
 		//GENERATE ACCESS TOKEN
     	$authToken = $oauth2->fetchAuthToken();
     	$refreshToken = $authToken['access_token'];
-
+    	
     	//SAVE ACCESS TOKEN EXPIRED ? HOUR
     	$oauthGoogle = new OAuthGoogle([
             'code' => $_GET['code'],
